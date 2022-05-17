@@ -1,24 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import SearchBar from "../src/components/common/SearchBar";
+import Card from "./components/content/Card";
+import { Box } from "@chakra-ui/react";
 
 function App() {
+  const [searchValue, setSearchValue] = React.useState("");
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Box width="100%" backgroundColor="#001315">
+      <Box w="276px" minH="100vh" className="App" mb="30px">
+        <Box>
+          <SearchBar setSearchValue={setSearchValue} />
+        </Box>
+        <Box mb="30px">
+          <Card searchValue={searchValue} />
+        </Box>
+      </Box>
+    </Box>
   );
 }
 
