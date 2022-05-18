@@ -32,6 +32,5 @@ const query = gql`
     company
   }
 `;
-console.log(query, "queryqueryquery");
 
 export default query;

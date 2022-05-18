@@ -1,8 +1,8 @@
-import { ApolloClient, InMemoryCache, from, ApolloLink } from "@apollo/client";
+import { ApolloClient, InMemoryCache } from "@apollo/client";
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
-  uri: "https://api.staging.tigerhall.net/graphql",
+  uri: process.env.REACT_APP_GRAPHQL_API_ENDPOINT,
 });
 
 export default client;

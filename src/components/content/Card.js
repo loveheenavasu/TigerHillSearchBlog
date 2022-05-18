@@ -1,22 +1,45 @@
 import React from "react";
 import { Box, Image, Text } from "@chakra-ui/react";
 import tigerHill from "../../images/Image.png";
-import query from "../../ggl/Quarys";
+import query from "../../ggl/Querys";
 import { useQuery } from "@apollo/client";
+import { Skeleton } from "@chakra-ui/react";
+import { VStack } from "@chakra-ui/react";
 
 function Card({ searchValue }) {
   const { data, loading, error } = useQuery(query);
   let listOfcard = data?.contentCards?.edges || [];
+
+  if (loading) {
+    return (
+      <>
+        <VStack>
+          {Array(20)
+            .fill("")
+            .map((item) => {
+              return <Skeleton w={276} h={290} />;
+            })}
+        </VStack>
+      </>
+    );
+  }
+
+  if (error) {
+    alert(error);
+    return "No data found";
+  }
+
+  if (searchValue) {
+    listOfcard = listOfcard.filter((item) =>
+      item?.name?.toLowerCase().includes(searchValue.toLowerCase())
+    );
+  }
   return (
     <>
-      {listOfcard
-        .filter((item) =>
-          item?.name?.toLowerCase().includes(searchValue.toLowerCase())
-        )
-        .map((content) => {
-          console.log(content, "contentcontent");
-          return (
-            <Box
+      {listOfcard.map((content) => {
+        return (
+          <>
+            <VStack
               borderWidth="1px"
               borderRadius="5px"
               width="276px"
@@ -90,9 +113,10 @@ function Card({ searchValue }) {
                   {content.experts[0].company}
                 </Text>
               </Box>
-            </Box>
-          );
-        })}
+            </VStack>
+          </>
+        );
+      })}
     </>
   );
 }

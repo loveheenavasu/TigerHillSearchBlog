@@ -7,16 +7,18 @@ import { Box } from "@chakra-ui/react";
 function App() {
   const [searchValue, setSearchValue] = React.useState("");
   return (
-    <Box width="100%" backgroundColor="#001315">
-      <Box w="276px" minH="100vh" className="App" mb="30px">
-        <Box>
-          <SearchBar setSearchValue={setSearchValue} />
-        </Box>
-        <Box mb="30px">
-          <Card searchValue={searchValue} />
+    <>
+      <Box width="100%" backgroundColor="#001315">
+        <Box w="276px" minH="100vh" className="App" mb="30px">
+          <Box>
+            <SearchBar setSearchValue={setSearchValue} />
+          </Box>
+          <Box mb="30px">
+            <Card searchValue={searchValue} />
+          </Box>
         </Box>
       </Box>
-    </Box>
+    </>
   );
 }
 
